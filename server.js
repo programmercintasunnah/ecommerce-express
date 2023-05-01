@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { sequelize } = require("./models");
+const rootRouter = require("./routers");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.static(publicPathDirectory));
 
 app.use(cookieParser());
 app.use(express.json());
+app.use("/api/", rootRouter);
 
 sequelize
   .authenticate()
